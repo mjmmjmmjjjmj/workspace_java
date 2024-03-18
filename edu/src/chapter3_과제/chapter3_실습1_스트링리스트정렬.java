@@ -10,9 +10,19 @@ public class chapter3_실습1_스트링리스트정렬 {
 		//현재 배열에서 중복 제거하려고 코드가 길어진다
 		//배열을 리스트로 변환 > list.remove();
 		//삭제된 리스트를 배열로 변환하여 리턴
-    	
+    	List<String> list = new ArrayList<>();
+    	for(int i = 0; i<arr.length; i++) {
+    		String str = arr[i];
+    	list.add(str);
+    	}
     	list.remove(item);
     	return list.toArray(String[]::new);
+    	//풀어서 이렇게 쓸 수 있음
+//    	 String[] result = new String[list.size()];
+//    	    for (int i = 0; i < list.size(); i++) {
+//    	        result[i] = list.get(i);
+//    	    }
+//    	    return result;
     }
     
     static void getList(List<String> list) {
@@ -31,13 +41,13 @@ public class chapter3_실습1_스트링리스트정렬 {
     	System.out.println(topic + "::");
 //    	for(in_t i = 0;)
     	for(String st: list) {
-    		
+    		System.out.println(st);
     	}
     }
     static void sortList(List<String> list) {
     	//방법1 list.sort(null);
     	//방법2 리스트를 스트링 배열로 전환
-    	
+    	list.sort(null);
     }
     
     static String[] removeDuplicateList(List<String> list) {
@@ -47,13 +57,15 @@ public class chapter3_실습1_스트링리스트정렬 {
 	    cities = list.toArray(cities);
 	    //list를 배열 cities[]로 변환
 	    //for문으로 도시가 중복인 걸 체크 = compareTo를 사용해서
+	    List<String> cityList = new ArrayList<>();
 	    int count = cities.length;
 	    for(int i = 0; i<count; i++) {
 	    	int j = i + 1;
 	    	while(j < count) {
-	    		if () {//배열에서 중복 검사하여 참이면
-	    			cities = removeElement1(cities, city[j]); //배열 전달
+	    		if (cities[i].equals(cities[j])) {//배열에서 중복 검사하여 참이면
+	    			cities = removeElement1(cities, cities[j]); //배열 전달
 	    		}
+	    		j++;
 	    	}
 	    }
 	    if() {//배열에서 중복 검사해서 참이면
@@ -61,7 +73,7 @@ public class chapter3_실습1_스트링리스트정렬 {
 	    }
 	    removeElement1(cities, city);
 	    
-	    return cities;
+	    return city;
     }
 	public static void main(String[] args) {
 		ArrayList<String> list = new ArrayList<>();

@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 class PhyscData3 {
+	public PhyscData3(String name, int height, double vision) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.height = height;
+		this.vision = vision;
+	}
 	String name;
 	int height;
 	double vision;
@@ -21,8 +27,9 @@ class NameOrderComparator2 implements Comparator<PhyscData3>{
 
 class HeightOrderComparator2 implements Comparator<PhyscData3>{
 	public int compare(PhyscData3 p1, PhyscData3 p2) {
-		if (p1.name.compareTo(p2.name)>0) return 1;
-		else if (p1.name.compareTo(p2.name)<0) return -1;
+		if (p1.height>p2.height) 
+			return 1;
+		else if (p1.height<p2.height) return -1;
 		else {
 			return 0;
 		}
@@ -31,8 +38,8 @@ class HeightOrderComparator2 implements Comparator<PhyscData3>{
 
 class visionOrderComparator2 implements Comparator<PhyscData3>{
 	public int compare(PhyscData3 p1, PhyscData3 p2) {
-		if (p1.name.compareTo(p2.name)>0) return 1;
-		else if (p1.name.compareTo(p2.name)<0) return -1;
+		if (p1.vision>p2.vision) return 1;
+		else if (p1.vision<p2.vision) return -1;
 		else {
 			return 0;
 		}
@@ -52,7 +59,6 @@ public class chapter3_실습5_객체비교연산자 {
 				new PhyscData3("길동", 167, 0.2),
 				new PhyscData3("길동", 167, 0.5),
 		};
-		Arrays.binarySearch(data, key, HEIGHT_ORDER);
 		showData("정렬전 객체 배열", data);
 		Arrays.sort(data, HEIGHT_ORDER);
 		
@@ -61,6 +67,16 @@ public class chapter3_실습5_객체비교연산자 {
 		Arrays.binarySearch(data, key, HEIGHT_ORDER);
 		int idx = Arrays.binarySearch(data, key, HEIGHT_ORDER);
 		System.out.println("\nArrays.binarySearch(): result = " + idx);
+	}
+
+	private static void showData(String name, PhyscData3[] data) {
+		// TODO Auto-generated method stub
+		System.out.println(name);
+		for(PhyscData3 datum : data){
+			System.out.println(datum.name + ", "+ datum.height+", "+ datum.vision);
+		}
+			
+		
 	}
 
 }

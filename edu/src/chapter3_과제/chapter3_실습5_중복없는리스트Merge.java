@@ -1,5 +1,17 @@
 package chapter3_과제;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 //중복이 없는 리스트를 merge하는 버젼
 
 public class chapter3_실습5_중복없는리스트Merge {
@@ -35,6 +47,7 @@ public class chapter3_실습5_중복없는리스트Merge {
 			 */
 			ArrayList<String> list3 = new ArrayList<>();
 			// ------- ArrayList의 get()을 사용한 merge
+			return list3;
 
 						
 		}
@@ -58,6 +71,7 @@ public class chapter3_실습5_중복없는리스트Merge {
 				
 				String s1 = new String(bytes1);
 				String s2 = new String(bytes2);
+				
 				System.out.println("입력 스트링: s1 = " + s1);
 				System.out.println("입력 스트링: s2 = " + s2);
 				String[] sarray1 = s1.split("[,\\s]+\r\n");// [,\\s]+\r\n은 쉼표나 공백이 하나 이상 나오고 이어서 캐리지 리턴과 개행 문자가 있는 패턴
@@ -121,6 +135,30 @@ public class chapter3_실습5_중복없는리스트Merge {
 				e.printStackTrace();
 			}
 		}
+		private static void showList(String string, ArrayList<String> list1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		private static void makeList(String[] arr, ArrayList<String> list1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		private static void trimSpace(String[] arr) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		private static void showData(String string, String[] arr) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
 		static void writeFile(List<String> list3, ByteBuffer buffer) {
 			String b = " ";
 			for (String sx : list3) {

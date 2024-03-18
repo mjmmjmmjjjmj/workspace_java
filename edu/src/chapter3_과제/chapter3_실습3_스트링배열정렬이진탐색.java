@@ -25,17 +25,46 @@ public class chapter3_실습3_스트링배열정렬이진탐색 {
 		}
 	}
 	static void reverse(String[] arr) {//교재 67페이지
-
+		for (int i = 0; i < arr.length/2; i++) {
+			swap(arr, i, arr.length-i-1);
+		}
 	}
-	static int linearSearch(String[] arr) {
-		return 0;
+	static int linearSearch(String[] arr, String key) {
+		for (int i = 0; i<arr.length; i++) {
+			if(arr[i].equals(key)) {
+				return i;
+			}
+		}
+		return -1;
 		
 	}
 	
-	static int binarySearch(String[] arr) {
-		return 0;
+	static int binarySearch(String[] arr, String key) {
+		int start = 0;
+		int end = arr.length-1;
+		
+		do {
+			int mid = (start + end)/2;
+			if(arr[mid].compareTo(key)==0) {
+				return mid;
+			}else if
+			(arr[mid].compareTo(key)<0) {
+				start = mid +1;
+			}else {
+				end = mid -1;
+			}
+		}while (start <= end);
+		return -1;
 		
 	}
+	static void showData(String msg, String []arr) {
+		System.out.println(msg);
+		for(String data : arr) {
+			System.out.println(data + "");
+		}
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
 		String []data = {"사과","포도","복숭아", "감", "산딸기", "블루베리", "대추", "수박", "참외"};//홍봉희 재배 과수
 
