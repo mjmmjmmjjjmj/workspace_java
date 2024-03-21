@@ -17,8 +17,8 @@ import chapter5재귀알고리즘.Stack5.EmptyGenericStackException;
 * 2개/c, f, queen 1개/black queen은 black 칸에, 폰 8개
 */
 class Point {
-	int ix;
-	int iy;
+	int ix; //x좌표
+	int iy; //y좌표
 
 	public Point(int x, int y) {
 		setIx(x);
@@ -205,6 +205,17 @@ public class Test_QueenEight_수정버전 {
 					numberSolutions++;
 					System.out.println("개수" + numberSolutions);
 					showQueens(d);
+					try {
+						p = st.pop();
+					} catch (EmptyGenericStackException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					count--;
+					ix = p.ix;
+					iy = p.iy;
+					d[ix][iy] = 0;
+					iy++;
 				}
 				continue;
 				
@@ -213,7 +224,8 @@ public class Test_QueenEight_수정버전 {
 					p = st.pop();
 				} catch (EmptyGenericStackException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+//					e.printStackTrace();
+					System.out.println("끝");
 					break;
 				}
 				
