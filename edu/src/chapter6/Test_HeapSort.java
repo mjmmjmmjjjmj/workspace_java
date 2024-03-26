@@ -125,6 +125,8 @@ public class Test_HeapSort {
 					sorted[i] = heap.DeleteMax();
 				}
 				//sorted[] 출력
+				System.out.println("Sorted Data: ");
+				showData(sorted);
 				break;
 
 			case 4:

@@ -7,15 +7,60 @@ class PhyscData implements Comparable<PhyscData>{
     String name;              // 이름
     int    height;            // 키
     double vision;            // 시력
-
+    
+    public PhyscData (String name, int height, double vision) {
+    	this.name = name;
+    	this.height = height;
+    	this.vision = vision;
+    }
+    
+    @Override
+    public int compareTo(PhyscData other) {
+    	if(this.vision > other.vision)
+    		return 1;
+    	else if(this.vision < other.vision) 
+    		return -1;
+    	else if(this.height > other.height)
+    		return 0;
+    	else
+    		return -1;
+		
+    }
 
 
 }
 public class Test_객체merge정렬 {
 	// --- 배열 요소 a[idx1]와 a[idx2]의 값을 교환 ---//
 	static void merge(PhyscData[] a, int lefta, int righta, int leftb, int rightb ) {
-
-
+//		인덱스를 사용하여 두 개의 부분 배열의 범위를 지정
+		int length = rightb-lefta + 1;
+//		병합된 배열을 저장할 임시 배열을 생성합니다.
+		PhyscData[] X = new PhyscData[length];
+//		각 부분 배열의 첫 번째 요소부터 시작하여 두 부분 배열의 요소를 비교하면서 임시 배열에 병합합니다.
+		int i = lefta;
+		int j = leftb;
+		int k = 0;
+		while(i<=righta && j<=rightb) {
+			if(a[i].compareTo(a[j]) < 0) {
+//			첫 번째 부분 배열의 요소가 더 작으면 임시 배열에 저장
+				X[k++] = a[i++];
+			} else {
+//				두 번째 부분 배열의 요소가 더 작으면 임시 배열에 저장
+				X[k++] = a[j++];
+			}
+		}
+//	    	첫 번째 부분 배열에 남아있는 요소들을 임시 배열에 복사
+		while(i <= righta) {
+			X[k++] = a[i++];
+//			 두 번째 부분 배열에 남아있는 요소들을 임시 배열에 복사
+		} while(j <= rightb) {
+			X[k++] = a[j++];
+		}
+		
+//		병합된 배열을 원래 배열에 복사
+		for(i = 0; i<length; i++) {
+			a[lefta + i] = X[i];
+		}
 	}
 
 	// --- 퀵 정렬(비재귀 버전)---//
