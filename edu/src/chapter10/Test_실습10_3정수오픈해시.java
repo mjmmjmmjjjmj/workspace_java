@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 class OpenHash2 {
 
-//--- 버킷의 상태 ---//
+	//--- 버킷의 상태 ---//
 	enum Status {
 		OCCUPIED, EMPTY, DELETED
 	} // {데이터 저장, 비어있음, 삭제 완료}
 
-//--- 버킷 ---//
+	//--- 버킷 ---//
 	static class Bucket {
 		private int data; // 데이터
 		private Status stat; // 상태
@@ -45,7 +45,7 @@ class OpenHash2 {
 	private int size; // 해시 테이블의 크기
 	private Bucket[] table; // 해시 테이블
 
-//--- 생성자(constructor) ---//
+	//--- 생성자(constructor) ---//
 	public OpenHash2(int size) {
 		try {
 			table = new Bucket[size];
@@ -58,32 +58,34 @@ class OpenHash2 {
 		}
 	}
 
-//--- 해시값을 구함 ---//
+	//--- 해시값을 구함 ---//
 	public int hashValue(int key) {
 		return hashCode() % size;
 	}
 
-//--- 재해시값을 구함 ---//
+	//--- 재해시값을 구함 ---//
 	public int rehashValue(int hash) {
 		return (hash + 1) % size;
 	}
 
-//--- 키값 key를 갖는 버킷 검색 ---//
-private Bucket searchNode(int key) {
-	int hash = hashValue(key);
-	Bucket b = table[hash];
-	
-	for (int i = 0; b.stat != Status.EMPTY && i < size; i++) {
-		if(b.stat == Status.OCCUPIED && ())
-			///////////////////////////여기 모름
-			return b;
-		hash = rehashValue(hash);
-		b = table[hash];
-	}
-	return null;
-}
+	//--- 키값 key를 갖는 버킷 검색 ---//
+	private Bucket searchNode(int key) {
+		int hash = hashValue(key);
+		Bucket b = table[hash];
 
-//--- 키값이 key인 요소를 검색(데이터를 반환)---//
+		for (int i = 0; b.stat != Status.EMPTY && i < size; i++) {
+			if(b.stat == Status.OCCUPIED && (key == b.data)) {
+				System.out.println(key + "값이 있다");
+				///////////////////////////여기 모름
+				return b;
+			}
+			hash = rehashValue(hash);
+			b = table[hash];
+		}
+		return null;
+	}
+
+	//--- 키값이 key인 요소를 검색(데이터를 반환)---//
 	public int search(int key) {
 		Bucket b = searchNode(key);
 		if (b != null) {
@@ -92,21 +94,22 @@ private Bucket searchNode(int key) {
 			return 0;
 	}
 
-//--- 키값이 key인 데이터를 data의 요소로 추가 ---//
+	//--- 키값이 key인 데이터를 data의 요소로 추가 ---//
 	public int add(int data) {
 		int hash = hashValue(data);
 		Bucket b = table[hash];
 		for (int i = 0; i < size; i++) {
 			if (b.stat == Status.EMPTY ||b.stat == Status.DELETED) {
 				b.set(data, Status.OCCUPIED);
-				return //////;
+				return 1;
 			}
+			b = table[rehashValue(data)];
 		}
-		return data;
+		return -1;
 
 	}
 
-//--- 키값이 key인 요소를 삭제 ---//
+	//--- 키값이 key인 요소를 삭제 ---//
 	public int remove(int key) {
 		Bucket b = searchNode(key);
 		if (b != null) {
@@ -116,22 +119,23 @@ private Bucket searchNode(int key) {
 
 	}
 
-//--- 해시 테이블을 덤프(dump) ---//
+	//--- 해시 테이블을 덤프(dump) ---//
 	public void dump() {
 		for(int i = 0; i < size; i++) {
 			System.out.printf("%02d", i);
 			switch(table[i].stat) {
 			case OCCUPIED:
-				System.out.printf("%s(%s)\n", table[i].getValue());
+				System.out.printf("%d\n", table[i].getValue());
 				////////// table[i].getkey()는 아니고...
-				/////////int key 를 만들어서 넣어주든, object 타입으로 뭘 해주든 해야 하는데...
-				///////////////////여기 몰것음 타입을 어케 해줘야 하지?
+				/////////int key 를 만들어서 넣어주든, object 타입으로 뭘 해주든 해야 하는데
+				////////새로 선언해주는 거 말고 다른 방법이 있을 것 같아서 둘 다 하기싫음.
+				////////여기 몰것음 타입을 어케 처리해줘야 하지?
 				break;
-				
+
 			case EMPTY:
 				System.out.println("--비어있음--");
 				break;
-				
+
 			case DELETED:
 				System.out.println("--삭제 마침--");
 				break;
